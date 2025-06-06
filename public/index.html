@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Firma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  =
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulario con Firma</h1>
+  <form id="surveyForm" >
+
+    
+
+  
+
+   <label for="pregunta1">¿UTILIZA EL UNIFORME DE MANERA ADECUADA?</label><br>
+   <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select><br><br>
+  
+    <label for="pregunta2">¿RESTO DE LA VESTIMENTA ES ADECUADA?</label> <br>
+    <select id="pregunta2" name="pregunta2" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select><br><br>
+
+    <label for="pregunta3">¿LAS HERRAMIENTAS SE ENCUENTRAN EN BUEN ESTADO? (LIMPIAS Y FUNCIONALES)?</label> <br>  
+    <select id="pregunta3" name="pregunta3" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select><br><br>
+
+   <label for="pregunta4">¿PORTA TODA LA HERRAMIENTA ASIGNADA?</label> <br>
+    <select id="pregunta4" name="pregunta4" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select><br><br>
+
+     <label for="pregunta5">¿HERRAMIENTAS ELECTRICAS FUNCIONAN CORRECTAMENTE?</label> <br>
+    <select id="pregunta5" name="pregunta5" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select><br><br>
+
+   <label for="pregunta6">¿LOS EQUIPOS ESTAN CARGADOS Y CON BATERIA SUFICIENTE?</label> <br>
+    <select id="pregunta6" name="pregunta6" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   
+   <label for="pregunta7">¿LAS HERRAMIENTAS SON TRANSPORTADAS CORRECTAMENTE?</label> <br>
+    <select id="pregunta7" name="pregunta7" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta8">¿UTILIZA ALCOHOL ISOPROPILICO?</label> <br>
+    <select id="pregunta8" name="pregunta8" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta9">¿UTILIZA PLANTILLA DE MEDICION?</label> <br>
+    <select id="pregunta9" name="pregunta9" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+    <label for="pregunta10">¿LOS EQUIPOS ESTAN CALIBRADOS (CLEAVER, OTDR, POWER METER)?</label> <br>
+    <select id="pregunta10" name="pregunta10" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+    <label for="pregunta11">¿LOS EQUIPOS DE PROTECCION ESTAN EN BUENAS CONDICIONES?</label> <br>
+    <select id="pregunta11" name="pregunta11" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+    <label for="pregunta12">¿REALIZAN TRABAJO EN EQUIPO?</label> <br>
+    <select id="pregunta12" name="pregunta12" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta13">¿USA LAS HERRAMIENTAS ADECUADAS PARA CADA TIPO DE TRABAJO?</label> <br>
+    <select id="pregunta13" name="pregunta13" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta14">¿PORTA HERRAMIENTAS QUE ESTAN EN MAL ESTADO POR NEGLIGENCIA PROPIA?</label> <br>
+    <select id="pregunta14" name="pregunta14" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+    <label for="pregunta15">¿TIENE UN SISTEMA DE ORGANIZACION (MALETIN, MOCHILA, VEHICULOS, ETC)?</label> <br>
+    <select id="pregunta15" name="pregunta15" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta16">¿UTILIZA CASCO DE PROTECCION?</label> <br>
+    <select id="pregunta16" name="pregunta16" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="pregunta17">¿UTILIZA BOTAS DE PROTECCION?</label> <br>
+    <select id="pregunta17" name="pregunta17" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   
+   <label for="pregunta18">¿UTILIZA EL EQUIPO PARA TRABAJOS EN ALTURA?</label> <br>
+    <select id="pregunta18" name="pregunta18" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+    <label for="pregunta19">¿UTILIZA LOS CONOS DE SEÑALIZACION?</label> <br>
+    <select id="pregunta19" name="pregunta19" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="5">SI</option>
+    <option value="0">NO</option>
+   </select><br><br>
+
+   <label for="observaciones">OBSERVACIONES</label>
+
+    <label for="signature">FIRMA TECNICO:</label><br>
+    <canvas id="signatureCanvas" width="300" height="100"></canvas><br>
+    <button type="button" id="clearSignature">Limpiar Firma</button><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <h2>Dashboard</h2>
+  <canvas id="dashboardChart" width="400" height="200"></canvas>
+
+  <script src="/controladores/script.js"></script>
+</body>
+</html>
