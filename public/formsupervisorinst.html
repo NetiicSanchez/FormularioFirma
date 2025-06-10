@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Firma</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <form id="surveyForm" class="form-container">
+
+        <div class="container my-5">
+
+            <label for="pregunta1">NOMBRE DEL SUPERVISOR</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="JUAN CARLOS PELICO">JUAN CARLOS PELICO</option>
+                <option value="WILLY BATEN">WILLY BATEN</option>
+            </select><br>
+
+             <label for="pregunta1">TIPO DE SUPERVISION</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="INSTALACION">INSTALACION</option>
+                <option value="AVERIAS">AVERIAS</option>
+            </select><br>
+
+              <label for="pregunta1">NOMBRE DEL TECNICO</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="ABRAHAM XIBIR">ABRAHAM XIBIR</option>
+                <option value="ALEX LUX">ALEX LUX</option>
+                <option value="BRYAN PAZ">BRYAN PAZ</option>
+                <option value="FREDY LOPEZ">FREDY LOPEZ</option>
+                <option value="ISRAEL HERRERA">ISRAEL HERRERA</option>
+                <option value="JESUS HUOX">JESUS HUOX</option>
+                <option value="JORGE GUTIERREZ">JORGE GUTIERREZ</option>
+                <option value="JOSE ANGEL">JOSE ANGEL</option>
+                <option value="JOSE MENCHU">JOSE MENCHU</option>
+                <option value="JULIO AQUINO">JULIO AQUINO</option>
+                <option value="MARCO LOPEZ">MARCO LOPEZ</option>
+                <option value="MARCOS GARCIA">MARCOS GARCIA</option>
+                <option value="MAXIMO VASQUEZ">MAXIMO VASQUEZ</option>
+                <option value="MELVIN ROJAS">MELVIN ROJAS</option>
+                <option value="OSCAR SOMOZA">OSCAR SOMOZA</option>
+                <option value="ROMAN XEC">ROMAN XEC</option>
+                <option value="WALTER MERIDA">WALTER MERIDA</option>
+            </select><br>
+
+            <label for="pregunta1">FECHA DE INSTALACION</label><br>
+            <input type="date" class="form-control"  id="fecha_instalacion" name="fecha_instalacion" required> <br> <br> 
+            
+            <label for="pregunta1">CODIGO NET</label><br>
+            <input type="text" class="form-control"  id="codigoNet" name="codigoNet" placeholder="Ingrese el código NET" required> <br> <br>
+            
+            <label for="pregunta1">NOMBRE CLIENTE</label><br>
+            <input type="text" class="form-control"  id="nombreCliente" name="nombreCliente" placeholder="Ingrese el nombre del cliente" required> <br> <br>
+            
+            <label for="pregunta1">LIMPIEZA DE ONT</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>agregue una calificacion</option>
+                <option value="1">MALO</option>
+                <option value="2">BUENO</option>
+                <option value="3">EXCELENTE</option>
+            </select><br>
+
+            <label for="pregunta1">FOTO DE ONT</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+            <label for="pregunta1">ANCLAJE ONT</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>seleccione una opcion</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
+            </select><br>
+
+            
+            <label for="pregunta1">PUNTEO UBICACION DE ONT</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>agregue una calificacion</option>
+                <option value="1">MALO</option>
+                <option value="2">BUENO</option>
+                <option value="3">EXCELENTE</option>
+
+            </select><br>
+            <label for="pregunta1">FOTO UBICACION DE ONT</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+            <label for="pregunta1">GRAPEADO DE F.O</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>seleccione una opcion</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
+            </select><br>
+
+            <label for="pregunta1">FOTO POTENCIA DE ONT</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+            
+            <label for="pregunta1">ORDENAMIENTO DE RESERVA</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>seleccione una opcion</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
+            </select><br>
+
+            <label for="pregunta1">FOTO DE ORDENAMIENTO DE RESERVA</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+            <label for="pregunta1">INSTALACION DE ARMELLA</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>seleccione una opcion</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
+            </select><br>
+
+            <label for="pregunta1">BAJADA DE NAP</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>seleccione una opcion</option>
+                <option value="1">SI</option>
+                <option value="0">NO</option>
+            </select><br>
+
+            
+            <label for="pregunta1">FOTO DE ETIQUTA DE NAP</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+             
+            <label for="pregunta1">FOTO DE POTENCIA DE NAP</label><br>
+             <input class="form-select" type="file"  name="foto" accept="image/*" required>
+
+             <label for="pregunta1">PUNTEO DE ACOMETIDA EXTERNA</label><br>
+            <select class="form-select" aria-label="Default select example" id="pregunta1" name="pregunta1" required>
+                <option value="" disabled selected>agregue una calificacion</option>
+                <option value="1">MALO</option>
+                <option value="2">BUENO</option>
+                <option value="3">EXCELENTE</option>
+            </select><br>
+             <label for="pregunta1">OBSERVACIONES</label><br>
+             <input type="text" class="form-select"  id="observaciones" name="observaciones" placeholder="Ingrese observaciones" > <br> <br>
+
+        </div>
+    </form>
+</body>
+
+</html>

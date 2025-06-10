@@ -1,0 +1,75 @@
+  body {
+      background: linear-gradient(135deg, #eafaf1 0%, #d4fc79 100%);
+      min-height: 100vh;
+    }
+    .form-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(39, 174, 96, 0.10);
+      padding: 2.5rem 2rem;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+    h1, h2 {
+      color: #27ae60;
+      font-weight: 700;
+    }
+    label {
+      font-weight: 500;
+      color: #218c53;
+      margin-bottom: 0.3rem;
+    }
+    .form-select, textarea {
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      border: 1.5px solid #b2bec3;
+      box-shadow: none;
+      transition: border-color 0.2s;
+    }
+    .form-select:focus, textarea:focus {
+      border-color: #27ae60;
+      outline: none;
+    }
+    #signatureCanvas {
+      border: 2px dashed #27ae60;
+      background: #f8fafd;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    #clearSignature {
+      background: #e17055;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+    }
+    #clearSignature:hover {
+      background: #c0392b;
+    }
+    button[type="submit"] {
+      background: #27ae60;
+      display: block;
+      margin: 0 auto;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(39,174,96,0.08);
+      transition: background 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: #219150;
+      
+    }
+
+    #dashboardChart {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+      margin-top: 2rem;
+      padding: 1rem;
+    }
