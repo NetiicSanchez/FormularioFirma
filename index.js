@@ -16,6 +16,8 @@ app.use('/',respuestasRouter)
 
 app.use('/registros',respuestasRouter)
 
+app.use('/rutas', require('./rutas/rutasform'));
+
 
 app.use('/modelos/respuestasformulario', respuestasRouter);
 app.set('view engine', 'ejs');

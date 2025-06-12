@@ -26,7 +26,7 @@ router.get('/pdf/:id', async (req, res) => {
     doc.pipe(res);
 
     //agregar una imagen de encabezado
-    doc.image('public/imagenes/logopng.jpg', 40, 40, { width: 100 });
+    doc.image('public/imagenes/logopng.jpg', 40, 50, { width: 100 });
 
     // Encabezado
     doc
@@ -81,7 +81,29 @@ router.get('/pdf/:id', async (req, res) => {
       ['Usa Casco', respuesta.usaCasco],
       ['Usa Botas', respuesta.usaBotas],
       ['Usa Equipo Altura', respuesta.usaEquipoAltura],
-      ['Usa Conos', respuesta.usaConos]
+      ['Usa Conos', respuesta.usaConos],
+      //total la suma de todos los campos
+      ['Total', 
+        respuesta.uniformeAdecuado + 
+        respuesta.vestimentaAdecuada + 
+        respuesta.herramientasEstadoOK + 
+        respuesta.herramientascompletas + 
+        respuesta.herramientaselectricasok + 
+        respuesta.equiposBateriasok + 
+        respuesta.transporteherramientas + 
+        respuesta.usaalcohol + 
+        respuesta.usaplantilla + 
+        respuesta.equiposCalibrados + 
+        respuesta.proteccionBuenEstado + 
+        respuesta.trabajoEnEquipo + 
+        respuesta.herramientaAdecuadaTrabajo + 
+        respuesta.herramientaDañadoPropio + 
+        respuesta.sistemaOrganizacion + 
+        respuesta.usaCasco + 
+        respuesta.usaBotas + 
+        respuesta.usaEquipoAltura + 
+        respuesta.usaConos
+      ]
     ];
 
 
@@ -210,7 +232,7 @@ router.get('/seleccionar',async (req, res)=>{
 
 
 
-
+//ver si tiene funcionamiento despues 
 router.post('/filtrar', async (req, res)=>{
 
   try{
@@ -235,6 +257,36 @@ router.post('/filtrar', async (req, res)=>{
     res.status(500).json({ error: 'Error al filtrar respuestas' });
   }
 });
+
+// Ruta para mostrar el formulario de filtrado
+
+router.get('/filtrar', (req, res) => {
+  res.render('form-filtrar');
+});
+
+router.get('/filtrar-vista', async (req, res) => {
+  try {
+    const mes = req.query.mes; // formato: "2024-06"
+    if (!mes) return res.status(400).send('Mes requerido');
+    const iniciofecha = new Date(`${mes}-01`);
+    const fechafinal = new Date(iniciofecha);
+    fechafinal.setMonth(fechafinal.getMonth() + 1);
+
+    const registros = await Respuesta.findAll({
+      where: {
+        fecha: {
+          [Op.gte]: iniciofecha,
+          [Op.lt]: fechafinal
+        }
+      }
+    });
+    res.render('filtrados', { registros, mes });
+  } catch (error) {
+    console.error('Error al mostrar respuestas filtradas:', error);
+    res.status(500).send('Error al mostrar respuestas filtradas');
+  }
+});
+
 
 
 module.exports = router;

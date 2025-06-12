@@ -1,0 +1,35 @@
+<style>
+#etiqueta {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  
+  #mes {
+    background-color: #1976d2;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  #botonbuc {
+    background: #194ccd;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  #botonbuc:hover {
+    background: #07dce3;
+  }
+</style>
+
+
+<h2>Filtrar respuestas por mes</h2>
+<form action="/rutas/filtrar-vista" method="get">
+  <label id="etiqueta" for="mes">Selecciona el mes:</label>
+  <input  type="month" id="mes" name="mes" required>
+  <button id="botonbuc" type="submit">Buscar</button>
+</form>

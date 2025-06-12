@@ -1,0 +1,57 @@
+<h2>Respuestas del mes <%= mes %></h2>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px 16px;
+    text-align: left;
+  }
+  th {
+    background-color: #1976d2;
+    color: #fff;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  tr:hover {
+    background-color: #e3f2fd;
+  }
+  a.btn-pdf {
+    background: #388e3c;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  a.btn-pdf:hover {
+    background: #2e7031;
+  }
+</style>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Fecha</th>
+    <th>Descargar PDF</th>
+  </tr>
+  <% registros.forEach(r => { %>
+    <tr>
+      <td><%= r.nombre %></td>
+      <td><%= new Date(r.fecha).toLocaleDateString('es-ES') %></td>
+      <td>
+        <a href="/rutas/pdf/<%= r.idformulario %>" class="btn-pdf" target="_blank">Descargar PDF</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
