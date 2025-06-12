@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vista Previa del Formulario</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #003366;
+      text-align: center;
+    }
+    .firma img {
+      border: 1px solid #000;
+      width: 300px;
+    }
+    .boton-descargar {
+      margin-top: 20px;
+      display: block;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Vista Previa del Formulario</h2>
+  <p><strong>Fecha: </strong> <%= fecha %></p>
+  <p><strong>Nombre:</strong> <%= nombre %></p>
+  <p><strong>uniforme Adecuado: </strong> <%= uniformeAdecuado %></p>
+  <p><strong>vestimenta Adecuada: </strong><%= vestimentaAdecuada%> </p>
+  <p><strong>Herramientas en buen Estado:</strong><%= herramientasEstadoOK%> </p>
+  <p><strong>Herramientas Completas: </strong> <%= herramientascompletas%> </p>
+  <p><strong>Herramientas Electricas en buen Estado:</strong> <%= herramientaselectricasok%> </p>
+  <p><strong>Equipos con Baterias: </strong> <%= equiposBateriasok%> </p>
+  <p><strong>Transporte de Herramientas: </strong> <%= transporteherramientas %></p>
+  <p><strong>Uso de Alcohol: </strong> <%= usaalcohol %></p>
+  <p><strong>Usa Plantilla:</strong> <%= usaplantilla %></p>
+  <p><strong>Equipos Calibrados: </strong><%= equiposcalibrados %></p>
+  <p><strong>Proteccion En Buen Estado: </strong> <%= proteccionbuenestado %></p>
+  <p><strong>Trabaja En Equipo: </strong> <%= trabajoenequipo %></p>
+  <p><strong>Herramienta Adecuada para El trabajo</strong><%= herramientaadecuadatrabajo %></p>
+  <p><strong>Herramienta Dañada Por El Portador</strong> <%= herramientadañadopropio %></p>
+  <p><strong>Tiene Sistema De Organizacion: </strong> <%= sistemaorganizacion %></p>
+  <p><strong>Usa Casco: </strong> <%= usaCasco %></p>
+  <p><strong>Usa Botas: </strong> <%= usaBotas %></p>
+  <p><strong>Usa Equipos De Altura: </strong> <%= usaEquipoAltura %></p>
+  <p><strong>Usa Conos: </strong> <%= usaConos %></p>
+  <p><strong>Observaciones: </strong> <%= observaciones %></p>
+
+  <div class="firma">
+    <p><strong>Firma:</strong></p>
+    <img src="<%= firma %>" alt="Firma capturada" />
+  </div>
+
+
+  <div class="boton-descargar">
+    <a href="/pdf/<%=id %>" target="_blank">
+      📄 Descargar PDF
+    </a>
+  </div>
+</body>
+</html>
