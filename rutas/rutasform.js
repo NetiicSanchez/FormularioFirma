@@ -26,14 +26,16 @@ router.get('/pdf/:id', async (req, res) => {
     doc.pipe(res);
 
     //agregar una imagen de encabezado
-    doc.image('public/imagenes/logopng.jpg', 40, 50, { width: 100 });
+    doc.image('public/imagenes/logopng.jpg', 40, 10, { width: 100 });
 
     // Encabezado
+    //bajar el encabezado
+    doc.moveDown(1.5); // Espacio antes del título
     doc
       .fontSize(20)
       .fillColor('#003366')
       .text('CALIFICACION DE HERRAMIENTAS', { align: 'center', underline: true });
-    doc.moveDown(0.8);
+ 
 
 
     doc.moveDown();// Espacio después de la línea
@@ -261,32 +263,33 @@ router.post('/filtrar', async (req, res)=>{
 // Ruta para mostrar el formulario de filtrado
 
 router.get('/filtrar', (req, res) => {
-  res.render('form-filtrar');
+  res.render('form-filtrar', { registros: null, mes: null });
 });
 
 router.get('/filtrar-vista', async (req, res) => {
   try {
-    const mes = req.query.mes; // formato: "2024-06"
-    if (!mes) return res.status(400).send('Mes requerido');
-    const iniciofecha = new Date(`${mes}-01`);
-    const fechafinal = new Date(iniciofecha);
-    fechafinal.setMonth(fechafinal.getMonth() + 1);
+    const mes = req.query.mes;
+    let registros = [];
+    if (mes) {
+      const iniciofecha = new Date(`${mes}-01`);
+      const fechafinal = new Date(iniciofecha);
+      fechafinal.setMonth(fechafinal.getMonth() + 1);
 
-    const registros = await Respuesta.findAll({
-      where: {
-        fecha: {
-          [Op.gte]: iniciofecha,
-          [Op.lt]: fechafinal
+      registros = await Respuesta.findAll({
+        where: {
+          fecha: {
+            [Op.gte]: iniciofecha,
+            [Op.lt]: fechafinal
+          }
         }
-      }
-    });
-    res.render('filtrados', { registros, mes });
+      });
+    }
+    res.render('form-filtrar', { registros, mes });
   } catch (error) {
     console.error('Error al mostrar respuestas filtradas:', error);
     res.status(500).send('Error al mostrar respuestas filtradas');
   }
 });
-
 
 
 module.exports = router;
