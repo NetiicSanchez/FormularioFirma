@@ -10,11 +10,11 @@
 
 .login-container {
   background: #fff;
-  padding: 40px;
+  padding: 60px 40px; /* MÁS ALTURA con más padding vertical */
   border-radius: 14px;
   box-shadow: 0 8px 32px rgba(60, 60, 120, 0.18);
   width: 100%;
-  max-width: 400px;   /* Más angosto */
+  max-width: 400px;
 }
 
 .login-container h2 {
@@ -29,9 +29,9 @@
 
 .form-control {
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* MÁS ESPACIO entre campos */
   border: 1px solid #bdbdbd;
-  padding: 0.75rem;
+  padding: 1rem; /* MÁS ALTO el campo */
   font-size: 1rem;
 }
 
