@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const PDFDocument = require('pdfkit');
 const Respuesta = require('../modelos/Respuestas.js');
+const Respuestasupervisor= require('../modelos/respuestasupervisor.js')
 const { Op } = require('sequelize');
+
+
 
 router.post('/', async (req, res) => {
     try {
@@ -12,6 +16,45 @@ router.post('/', async (req, res) => {
         console.error('Error al crear la respuesta:', error);
         res.status(500).json({ error: 'Error al crear la respuesta' });
     }
+});
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
+  },
+  filename: function (req, file, cb) {
+    // Nombre único para cada archivo
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
+router.post('/supervisioninst', upload.fields([
+  { name: 'fotoont' },
+  { name: 'fotoubicacionont' },
+  { name: 'fotopotenciaont' },
+  { name: 'fotoordenamientoreserva' },
+  { name: 'fotoetiquetanap' },
+  { name: 'fotopotencianap' }
+]), async (req, res) => {
+  try {
+    const data = {
+      ...req.body,
+      fotoont: req.files['fotoont'] ? req.files['fotoont'][0].path : null,
+      fotoubicacionont: req.files['fotoubicacionont'] ? req.files['fotoubicacionont'][0].path : null,
+      fotopotenciaont: req.files['fotopotenciaont'] ? req.files['fotopotenciaont'][0].path : null,
+      fotoordenamientoreserva: req.files['fotoordenamientoreserva'] ? req.files['fotoordenamientoreserva'][0].path : null,
+      fotoetiquetanap: req.files['fotoetiquetanap'] ? req.files['fotoetiquetanap'][0].path : null,
+      fotopotencianap: req.files['fotopotencianap'] ? req.files['fotopotencianap'][0].path : null,
+    };
+    const respuesta = await Respuestasupervisor.create(data);
+    res.status(201).json(respuesta);
+  } catch (error) {
+    console.error('Error al crear la respuesta de supervisión:', error);
+    res.status(500).json({ error: 'Error al crear la respuesta de supervisión' });
+  }
 });
 
 // Ruta para descargar PDF de una respuesta específica

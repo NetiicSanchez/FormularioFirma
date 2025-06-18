@@ -12,19 +12,19 @@
 
 <body>
 
-    <form id="surveyForm" class="form-container">
+    <form id="surveyForm" class="form-container" action="/supervisioninst" method="POST" enctype="multipart/form-data">
 
         <div class="container my-5">
 
-            <label for="nombresup">NOMBRE DEL SUPERVISOR</label><br>
-            <select class="form-select" aria-label="Default select example" id="nombresup" name="nombresup" required>
+            <label for="nombresupervisor">NOMBRE DEL SUPERVISOR</label><br>
+            <select class="form-select" aria-label="Default select example" id="nombresupervisor" name="nombresupervisor" required>
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="JUAN CARLOS PELICO">JUAN CARLOS PELICO</option>
                 <option value="WILLY BATEN">WILLY BATEN</option>
             </select><br>
 
-             <label for="tiposup">TIPO DE SUPERVISION</label><br>
-            <select class="form-select" aria-label="Default select example" id="tiposup" name="tiposup" required>
+             <label for="tiposupervision">TIPO DE SUPERVISION</label><br>
+            <select class="form-select" aria-label="Default select example" id="tiposupervision" name="tiposupervision" required>
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="INSTALACION">INSTALACION</option>
                 <option value="AVERIAS">AVERIAS</option>
@@ -52,8 +52,8 @@
                 <option value="WALTER MERIDA">WALTER MERIDA</option>
             </select><br>
 
-            <label for="fechainstalacion">FECHA DE INSTALACION</label><br>
-            <input type="date" class="form-control"  id="fechainstalacion" name="fechainstalacion" required> <br> <br> 
+            <label for="fecha">FECHA DE INSTALACION</label><br>
+            <input type="date" class="form-control"  id="fecha" name="fecha" required> <br> <br> 
             
             <label for="codigonet">CODIGO NET</label><br>
             <input type="text" class="form-control"  id="codigonet" name="codigonet" placeholder="Ingrese el código NET" required> <br> <br>
@@ -80,27 +80,27 @@
             </select><br>
 
             
-            <label for="punteoubicacion">PUNTEO UBICACION DE ONT</label><br>
-            <select class="form-select" aria-label="Default select example" id="punteoubicacion" name="punteoubicacion" required>
+            <label for="punteoubicacionont">PUNTEO UBICACION DE ONT</label><br>
+            <select class="form-select" aria-label="Default select example" id="punteoubicacionont" name="punteoubicacionont" required>
                 <option value="" disabled selected>agregue una calificacion</option>
                 <option value="1">MALO</option>
                 <option value="2">BUENO</option>
                 <option value="3">EXCELENTE</option>
 
             </select><br>
-            <label for="fotoubicacion">FOTO UBICACION DE ONT</label><br>
-             <input class="form-select" type="file" id="fotoubicacion"  name="fotoubicacion" accept="image/*" required>
+            <label for="fotoubicacionont">FOTO UBICACION DE ONT</label><br>
+             <input class="form-select" type="file" id="fotoubicacionont"  name="fotoubicacionont" accept="image/*" required>
 
 
-            <label for="grapeadofo">GRAPEADO DE F.O</label><br>
-            <select class="form-select" aria-label="Default select example" id="grapeadofo" name="grapeadofo" required>
+            <label for="grapeadofibra">GRAPEADO DE F.O</label><br>
+            <select class="form-select" aria-label="Default select example" id="grapeadofibra" name="grapeadofibra" required>
                 <option value="" disabled selected>seleccione una opcion</option>
                 <option value="1">SI</option>
                 <option value="0">NO</option>
             </select><br>
 
-            <label for="fotopotencia">FOTO POTENCIA DE ONT</label><br>
-             <input class="form-select" type="file" id="fotopotencia" name="fotopotencia" accept="image/*" required>
+            <label for="fotopotenciaont">FOTO POTENCIA DE ONT</label><br>
+             <input class="form-select" type="file" id="fotopotenciaont" name="fotopotenciaont" accept="image/*" required>
 
             
             <label for="ordenamientoreserva">ORDENAMIENTO DE RESERVA</label><br>
@@ -110,33 +110,34 @@
                 <option value="0">NO</option>
             </select><br>
 
-            <label for="fotoordenamiento">FOTO DE ORDENAMIENTO DE RESERVA</label><br>
-             <input class="form-select" type="file" id="fotoordenamiento"  name="fotoordenamiento" accept="image/*" required>
+            <label for="fotoordenamientoreserva">FOTO DE ORDENAMIENTO DE RESERVA</label><br>
+             <input class="form-select" type="file" id="fotoordenamientoreserva"  name="fotoordenamientoreserva" accept="image/*" required>
 
-            <label for="instarmella">INSTALACION DE ARMELLA</label><br>
-            <select class="form-select" aria-label="Default select example" id="instarmella" name="instarmella" required>
+
+            <label for="instalacionarmella">INSTALACION DE ARMELLA</label><br>
+            <select class="form-select" aria-label="Default select example" id="instalacionarmella" name="instalacionarmella" required>
                 <option value="" disabled selected>seleccione una opcion</option>
                 <option value="1">SI</option>
                 <option value="0">NO</option>
             </select><br>
 
-            <label for="bajadanap">BAJADA DE NAP</label><br>
-            <select class="form-select" aria-label="Default select example" id="bajadanap" name="bajadanap" required>
+            <label for="bajadadenap">BAJADA DE NAP</label><br>
+            <select class="form-select" aria-label="Default select example" id="bajadadenap" name="bajadadenap" required>
                 <option value="" disabled selected>seleccione una opcion</option>
                 <option value="1">SI</option>
                 <option value="0">NO</option>
             </select><br>
 
             
-            <label for="fotoetiqueta">FOTO DE ETIQUTA DE NAP</label><br>
-             <input class="form-select" type="file" id="fotoetiqueta"  name="fotoetiqueta" accept="image/*" required>
+            <label for="fotoetiquetanap">FOTO DE ETIQUTA DE NAP</label><br>
+             <input class="form-select" type="file" id="fotoetiquetanap"  name="fotoetiquetanap" accept="image/*" required>
 
              
             <label for="fotopotencianap">FOTO DE POTENCIA DE NAP</label><br>
              <input class="form-select" type="file" id="fotopotencianap"  name="fotopotencianap" accept="image/*" required>
 
-             <label for="punteoacometida">PUNTEO DE ACOMETIDA EXTERNA</label><br>
-            <select class="form-select" aria-label="Default select example" id="punteoacometida" name="punteoacometida" required>
+             <label for="punteoacometidaextra">PUNTEO DE ACOMETIDA EXTERNA</label><br>
+            <select class="form-select" aria-label="Default select example" id="punteoacometidaextra" name="punteoacometidaextra" required>
                 <option value="" disabled selected>agregue una calificacion</option>
                 <option value="1">MALO</option>
                 <option value="2">BUENO</option>
@@ -144,6 +145,7 @@
             </select><br>
              <label for="observaciones">OBSERVACIONES</label><br>
              <input type="text" class="form-select"  id="observaciones" name="observaciones" placeholder="Ingrese observaciones" > <br> <br>
+             <button type="submit" class="btn btn-primary"> ENVIAR </button>
 
         </div>
     </form>

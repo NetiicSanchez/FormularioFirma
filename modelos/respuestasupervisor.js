@@ -5,7 +5,8 @@ const respuestaSupervisor = sequelize.define('formsupervisor', {
     idformsupervisor: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        field:'idformsupervisor'
     },  
     nombresupervisor: {
         type: DataTypes.STRING,
@@ -115,7 +116,7 @@ const respuestaSupervisor = sequelize.define('formsupervisor', {
 }, 
 
 {
-    tableName: 'formulario',
+    tableName: 'formsupervisor',
     timestamps: false,
 
 });
