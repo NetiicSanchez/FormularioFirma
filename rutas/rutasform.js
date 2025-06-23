@@ -37,7 +37,8 @@ router.post('/supervisioninst', upload.fields([
   { name: 'fotopotenciaont' },
   { name: 'fotoordenamientoreserva' },
   { name: 'fotoetiquetanap' },
-  { name: 'fotopotencianap' }
+  { name: 'fotopotencianap' },
+  {name: 'fotoetiquetaont'}
 ]), async (req, res) => {
   try {
     const data = {
@@ -48,6 +49,7 @@ router.post('/supervisioninst', upload.fields([
       fotoordenamientoreserva: req.files['fotoordenamientoreserva'] ? req.files['fotoordenamientoreserva'][0].path : null,
       fotoetiquetanap: req.files['fotoetiquetanap'] ? req.files['fotoetiquetanap'][0].path : null,
       fotopotencianap: req.files['fotopotencianap'] ? req.files['fotopotencianap'][0].path : null,
+      fotoetiquetaont: req.files['fotoetiquetaont'] ? req.files['fotoetiquetaont'][0].path : null
     };
     const respuesta = await Respuestasupervisor.create(data);
     res.status(201).json(respuesta);

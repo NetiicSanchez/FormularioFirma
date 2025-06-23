@@ -113,6 +113,27 @@ const respuestaSupervisor = sequelize.define('formsupervisor', {
         allowNull: true,
         field: 'observaciones'
     },
+    numeroticket: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'numeroticket'
+    },
+    tipoaveria: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'tipoaveria'
+    },
+    fotoetiquetaont: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'fotoetiquetaont'
+    },
+    razonfalla: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: 'razonfalla'
+    },
+
 }, 
 
 {
