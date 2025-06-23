@@ -133,6 +133,11 @@ const respuestaSupervisor = sequelize.define('formsupervisor', {
         allowNull: false,
         field: 'razonfalla'
     },
+    firma: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        field: 'firma'
+    }
 
 }, 
 
