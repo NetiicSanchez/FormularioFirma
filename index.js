@@ -8,6 +8,11 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 
+const fs = require('fs');
+if (process.env.GOOGLE_CREDENTIALS) {
+  fs.writeFileSync('google-credentials.json', process.env.GOOGLE_CREDENTIALS);
+}
+
 app.use(session({
   secret:'clave-secreta', // clave secreta para firmar la sesión
   resave: false, // no volver a guardar la sesión si no ha habido cambios
