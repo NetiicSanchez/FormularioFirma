@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener referencias al canvas y contexto
   const canvas = document.getElementById('signatureCanvas');

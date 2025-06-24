@@ -6,6 +6,17 @@ const sequelize = require('./configuracion/db');
 const respuestasRouter = require('./rutas/rutasform');
 const path = require('path');
 const app = express();
+const session = require('express-session');
+
+app.use(session({
+  secret:'clave-secreta', // clave secreta para firmar la sesión
+  resave: false, // no volver a guardar la sesión si no ha habido cambios
+  saveUninitialized: false, // no guardar sesiones no inicializadas
+  cookie:{
+    maxAge:20 * 60 * 1000 // tiempo de expiración de la sesión en milisegundos (20 minutos)
+  }
+
+}))
 
 app.use(cors());
 app.use(bodyParser.json());
