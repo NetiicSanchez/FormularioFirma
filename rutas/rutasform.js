@@ -5,6 +5,22 @@ const PDFDocument = require('pdfkit');
 const Respuesta = require('../modelos/Respuestas.js');
 const Respuestasupervisor= require('../modelos/respuestasupervisor.js')
 const { Op } = require('sequelize');
+const { google } = require('googleapis');
+const fs = require('fs');
+const path = require('path');
+
+// Configura multer para guardar archivos temporalmente
+const uploadDrive = require('multer')({ dest: 'temp/' });
+
+// Autenticación con Google
+const auth = new google.auth.GoogleAuth({
+  keyFile: path.join(__dirname, '../google-credentials.json'), // Ruta a tu JSON
+  scopes: ['https://www.googleapis.com/auth/drive']
+});
+const driveService = google.drive({ version: 'v3', auth });
+
+// ID de la carpeta compartida en tu Google Drive (cópiala de la URL de la carpeta)
+const FOLDER_ID = '1Ig3ue0KoqYfRlkzWYKtFvcZhtTNmW5N7'; // <-- Pega aquí el ID real
 
 
 
@@ -20,42 +36,58 @@ router.post('/', async (req, res) => {
 
 
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
-  },
-  filename: function (req, file, cb) {
-    // Nombre único para cada archivo
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
 
-router.post('/supervisioninst', upload.fields([
+router.post('/supervisioninst', uploadDrive.fields([
+  { name: 'fotoetiquetaont' },
   { name: 'fotoont' },
   { name: 'fotoubicacionont' },
   { name: 'fotopotenciaont' },
   { name: 'fotoordenamientoreserva' },
   { name: 'fotoetiquetanap' },
-  { name: 'fotopotencianap' },
-  {name: 'fotoetiquetaont'}
+  { name: 'fotopotencianap' }
 ]), async (req, res) => {
   try {
+    // Función para subir un archivo a Drive y devolver el enlace
+    async function subirArchivoDrive(file) {
+      if (!file) return null;
+      const fileMetadata = {
+        name: file.originalname,
+        parents: [FOLDER_ID]
+      };
+      const media = {
+        mimeType: file.mimetype,
+        body: fs.createReadStream(file.path)
+      };
+      const response = await driveService.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id, webViewLink'
+      });
+      fs.unlinkSync(file.path); // Borra archivo temporal
+      return response.data.webViewLink; // O usa response.data.id si prefieres
+    }
+
+    // Sube cada archivo a Drive y reemplaza la ruta por el enlace
+    const fotos = {};
+    for (const campo of [
+      'fotoetiquetaont', 'fotoont', 'fotoubicacionont', 'fotopotenciaont',
+      'fotoordenamientoreserva', 'fotoetiquetanap', 'fotopotencianap'
+    ]) {
+      if (req.files[campo]) {
+        fotos[campo] = await subirArchivoDrive(req.files[campo][0]);
+      }
+    }
+
+    // Crea el registro en la base de datos con los enlaces de Drive
     const data = {
       ...req.body,
-      fotoont: req.files['fotoont'] ? req.files['fotoont'][0].path : null,
-      fotoubicacionont: req.files['fotoubicacionont'] ? req.files['fotoubicacionont'][0].path : null,
-      fotopotenciaont: req.files['fotopotenciaont'] ? req.files['fotopotenciaont'][0].path : null,
-      fotoordenamientoreserva: req.files['fotoordenamientoreserva'] ? req.files['fotoordenamientoreserva'][0].path : null,
-      fotoetiquetanap: req.files['fotoetiquetanap'] ? req.files['fotoetiquetanap'][0].path : null,
-      fotopotencianap: req.files['fotopotencianap'] ? req.files['fotopotencianap'][0].path : null,
-      fotoetiquetaont: req.files['fotoetiquetaont'] ? req.files['fotoetiquetaont'][0].path : null
+      ...fotos
     };
     const respuesta = await Respuestasupervisor.create(data);
     res.status(201).json(respuesta);
   } catch (error) {
     console.error('Error al crear la respuesta de supervisión:', error);
-    res.status(500).json({ error: 'Error al crear la respuesta de supervisión' });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -333,6 +365,35 @@ router.get('/filtrar-vista', async (req, res) => {
   } catch (error) {
     console.error('Error al mostrar respuestas filtradas:', error);
     res.status(500).send('Error al mostrar respuestas filtradas');
+  }
+});
+
+router.post('/subir', uploadDrive.single('archivo'), async (req, res) => {
+  try {
+    const fileMetadata = {
+      name: req.file.originalname,
+      parents: [FOLDER_ID]
+    };
+    const media = {
+      mimeType: req.file.mimetype,
+      body: fs.createReadStream(req.file.path)
+    };
+    const response = await driveService.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: 'id, webViewLink, webContentLink'
+    });
+
+    // Borra el archivo temporal
+    fs.unlinkSync(req.file.path);
+
+    res.json({
+      fileId: response.data.id,
+      webViewLink: response.data.webViewLink,
+      webContentLink: response.data.webContentLink
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
