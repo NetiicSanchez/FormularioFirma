@@ -14,13 +14,13 @@ const uploadDrive = require('multer')({ dest: 'temp/' });
 
 // Autenticación con Google
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, '../google-credentials.json'), // Ruta a tu JSON
+  keyFile: path.join(__dirname, '../google-credentials.json'), // Ruta a JSON
   scopes: ['https://www.googleapis.com/auth/drive']
 });
 const driveService = google.drive({ version: 'v3', auth });
 
-// ID de la carpeta compartida en tu Google Drive (cópiala de la URL de la carpeta)
-const FOLDER_ID = '1Ig3ue0KoqYfRlkzWYKtFvcZhtTNmW5N7'; // <-- Pega aquí el ID real
+// ID de la carpeta compartida en  Google Drive 
+const FOLDER_ID = '1Ig3ue0KoqYfRlkzWYKtFvcZhtTNmW5N7'; 
 
 
 
@@ -44,7 +44,8 @@ router.post('/supervisioninst', uploadDrive.fields([
   { name: 'fotopotenciaont' },
   { name: 'fotoordenamientoreserva' },
   { name: 'fotoetiquetanap' },
-  { name: 'fotopotencianap' }
+  { name: 'fotopotencianap' },
+ { name: 'firma' }
 ]), async (req, res) => {
   try {
     // Función para subir un archivo a Drive y devolver el enlace
