@@ -72,7 +72,7 @@ router.post('/supervisioninst', uploadDrive.fields([
     const fotos = {};
     for (const campo of [
       'fotoetiquetaont', 'fotoont', 'fotoubicacionont', 'fotopotenciaont',
-      'fotoordenamientoreserva', 'fotoetiquetanap', 'fotopotencianap'
+      'fotoordenamientoreserva', 'fotoetiquetanap', 'fotopotencianap','firma'
     ]) {
       if (req.files[campo]) {
         fotos[campo] = await subirArchivoDrive(req.files[campo][0]);
