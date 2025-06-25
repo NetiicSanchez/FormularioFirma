@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 const canvas = document.getElementById('signatureCanvas');
-const firmaDataUrl = canvas.toDataURL('image/png');
-const firmaFile = dataURLtoFile(firmaDataUrl, 'firma.png');
-formData.append('firma', firmaFile);
+
 
 
   if (!canvas) return;
