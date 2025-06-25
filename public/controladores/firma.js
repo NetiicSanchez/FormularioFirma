@@ -47,3 +47,34 @@ const canvas = document.getElementById('signatureCanvas');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   });
 });
+
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  const canvas = document.getElementById('signatureCanvas');
+  if (!canvas) return;
+
+  // Convierte el canvas a un blob (imagen PNG)
+  canvas.toBlob(function(blob) {
+    // Crea un nuevo input tipo file
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.name = 'firma';
+
+    // Crea un objeto File a partir del blob
+    const file = new File([blob], 'firma.png', { type: 'image/png' });
+
+    // Usa DataTransfer para simular la selección de archivo
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    fileInput.files = dataTransfer.files;
+
+    // Adjunta el input oculto al formulario
+    fileInput.style.display = 'none';
+    e.target.appendChild(fileInput);
+
+    // Envía el formulario después de agregar el archivo
+    e.target.submit();
+  });
+
+  // Previene el envío inmediato, lo hará el callback de toBlob
+  e.preventDefault();
+});
