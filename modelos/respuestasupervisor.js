@@ -10,127 +10,127 @@ const respuestaSupervisor = sequelize.define('formsupervisor', {
     },  
     nombresupervisor: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true,
     },
     tiposupervision:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'tiposupervision'
     },
     nombretecnico: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:true,
         field: 'nombretecnico'
     },
     fecha: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: DataTypes.NOW,
         field: 'fecha'
     },
     codigonet: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'codigonet'
     },
     nombrecliente: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'nombrecliente'
     },
     limpiezaont:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         field: 'limpiezaont'
     },
     fotoont:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotoont'
     },
     anclajeont:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull: true,
         field: 'anclajeont'
     },
     punteoubicacionont:{ 
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull:true,
         field: 'punteoubicacionont'
     },
     fotoubicacionont:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotoubicacionont'
     },
     grapeadofibra:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull: true,
         field: 'grapeadofibra'
     },
     fotopotenciaont:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotopotenciaont'
     },
     ordenamientoreserva:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull: true,
         field: 'ordenamientoreserva'
     },
     fotoordenamientoreserva:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotoordenamientoreserva'
     },
     instalacionarmella:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull:true,
         field: 'instalacionarmella'
     },
     bajadadenap:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull: true,
         field: 'bajadadenap'
     },
     fotoetiquetanap:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotoetiquetanap'
     },
     fotopotencianap:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotopotencianap'
     },
     punteoacometidaextra:{
         type: DataTypes.SMALLINT,
-        allowNull: false,
+        allowNull: true,
         field: 'punteoacometidaextra'
     },
     observaciones: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull:true,
         field: 'observaciones'
     },
     numeroticket: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'numeroticket'
     },
     tipoaveria: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'tipoaveria'
     },
     fotoetiquetaont: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'fotoetiquetaont'
     },
     razonfalla: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'razonfalla'
     },
     firma: {
