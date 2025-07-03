@@ -85,7 +85,6 @@ router.post('/supervisioninst', uploadDrive.fields([
       ...fotos
     };
     const respuesta = await Respuestasupervisor.create(data);
-    res.status(201).json({ success: true });
   } catch (error) {
     console.error('Error al crear la respuesta de supervisión:', error);
     res.status(500).json({ error: error.message });

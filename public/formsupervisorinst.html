@@ -181,22 +181,27 @@
             <div id="mensaje" class="alert alert-success" style="display:none;"></div>
 
             <script src="/controladores/firma.js"></script>
-
-           <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('surveyForm');
   const submitBtn = form.querySelector('button[type="submit"]');
   const mensajeDiv = document.getElementById('mensaje');
-
 
   form.addEventListener('reset', function() {
     submitBtn.disabled = false;
     submitBtn.textContent = 'ENVIAR';
   });
 
-  // Intercepta el envío para mostrar el mensaje y limpiar el formulario
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+
+    // Bloquea el botón y muestra mensaje de "enviando"
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando datos...';
+    mensajeDiv.style.display = 'block';
+    mensajeDiv.textContent = 'Enviando datos, espere un momento...';
+    mensajeDiv.classList.remove('alert-danger');
+    mensajeDiv.classList.add('alert-success');
 
     // Envía el formulario con fetch (AJAX)
     const formData = new FormData(form);
@@ -206,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => {
       if (response.ok) {
-        mensajeDiv.style.display = 'block';
         mensajeDiv.textContent = 'Datos enviados exitosamente';
         form.reset();
         // Limpia la firma si tienes canvas
@@ -214,11 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (canvas) {
           const ctx = canvas.getContext('2d');
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }   setTimeout(() => {
-    mensajeDiv.style.display = 'none';
-  }, 3000); // Oculta el mensaje después de 3 segundos
+        }
+        setTimeout(() => {
+          mensajeDiv.style.display = 'none';
+        }, 3000);
       } else {
-        mensajeDiv.style.display = 'block';
         mensajeDiv.textContent = 'Error al enviar los datos';
         mensajeDiv.classList.remove('alert-success');
         mensajeDiv.classList.add('alert-danger');
@@ -227,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
       submitBtn.textContent = 'ENVIAR';
     })
     .catch(() => {
-      mensajeDiv.style.display = 'block';
       mensajeDiv.textContent = 'Error al enviar los datos';
       mensajeDiv.classList.remove('alert-success');
       mensajeDiv.classList.add('alert-danger');
