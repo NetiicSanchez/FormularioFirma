@@ -192,56 +192,55 @@ document.addEventListener('DOMContentLoaded', function() {
     submitBtn.textContent = 'ENVIAR';
   });
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
 
-    // Bloquea el botón y muestra mensaje de "enviando"
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando datos...';
-    mensajeDiv.style.display = 'block';
-    mensajeDiv.textContent = 'Enviando datos, espere un momento...';
-    mensajeDiv.classList.remove('alert-danger');
-    mensajeDiv.classList.add('alert-success');
+  // Bloquea el botón y muestra mensaje de "enviando"
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando datos...';
+  mensajeDiv.style.display = 'block';
+  mensajeDiv.textContent = 'Enviando datos, espere un momento...';
+  mensajeDiv.classList.remove('alert-danger');
+  mensajeDiv.classList.add('alert-success');
 
-    // Envía el formulario con fetch (AJAX)
-    const formData = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        mensajeDiv.textContent = 'Datos enviados exitosamente';
-        form.reset();
-        // Limpia la firma si tienes canvas
-        const canvas = document.getElementById('signatureCanvas');
-        if (canvas) {
-          const ctx = canvas.getContext('2d');
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-        setTimeout(() => {
-          mensajeDiv.style.display = 'none';
-        }, 3000);
-      } else {
-        mensajeDiv.textContent = 'Error al enviar los datos';
-        mensajeDiv.classList.remove('alert-success');
-        mensajeDiv.classList.add('alert-danger');
+  // Envía el formulario con fetch (AJAX)
+  const formData = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      // Cambia el mensaje ANTES de resetear el formulario
+      mensajeDiv.textContent = 'Datos enviados exitosamente';
+      // Limpia la firma si tienes canvas
+      const canvas = document.getElementById('signatureCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'ENVIAR';
-    })
-    .catch(() => {
+      form.reset();
+      setTimeout(() => {
+        mensajeDiv.style.display = 'none';
+      }, 3000);
+    } else {
       mensajeDiv.textContent = 'Error al enviar los datos';
       mensajeDiv.classList.remove('alert-success');
       mensajeDiv.classList.add('alert-danger');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'ENVIAR';
-    });
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ENVIAR';
+  })
+  .catch(() => {
+    mensajeDiv.textContent = 'Error al enviar los datos';
+    mensajeDiv.classList.remove('alert-success');
+    mensajeDiv.classList.add('alert-danger');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ENVIAR';
   });
 });
+});
 </script>
-
-            
 
 
         </div>
