@@ -195,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Bloquea el botón y muestra mensaje de "enviando"
   submitBtn.disabled = true;
   submitBtn.textContent = 'Enviando datos...';
   mensajeDiv.style.display = 'block';
@@ -203,18 +202,25 @@ form.addEventListener('submit', function(e) {
   mensajeDiv.classList.remove('alert-danger');
   mensajeDiv.classList.add('alert-success');
 
-  // Envía el formulario con fetch (AJAX)
   const formData = new FormData(form);
+
+  // Adjunta la firma solo si existe
+  const canvas = document.getElementById('signatureCanvas');
+  if (canvas) {
+    const dataUrl = canvas.toDataURL('image/png');
+    if (dataUrl && !isCanvasBlank(canvas)) {
+      const file = dataURLtoFile(dataUrl, 'firma.png');
+      formData.append('firma', file);
+    }
+  }
+
   fetch(form.action, {
     method: 'POST',
     body: formData
   })
   .then(response => {
     if (response.ok) {
-      // Cambia el mensaje ANTES de resetear el formulario
       mensajeDiv.textContent = 'Datos enviados exitosamente';
-      // Limpia la firma si tienes canvas
-      const canvas = document.getElementById('signatureCanvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -239,6 +245,7 @@ form.addEventListener('submit', function(e) {
     submitBtn.textContent = 'ENVIAR';
   });
 });
+
 });
 </script>
 
