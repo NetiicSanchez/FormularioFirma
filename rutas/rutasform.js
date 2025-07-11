@@ -373,29 +373,20 @@ router.get('/filtrar-vista', async (req, res) => {
   }
 });
 
-router.post('/subir', uploadDrive.single('archivo'), async (req, res) => {
+router.post('/subir', upload.single('archivo'), async (req, res) => {
   try {
-    const fileMetadata = {
-      name: req.file.originalname,
-      parents: [FOLDER_ID]
-    };
-    const media = {
-      mimeType: req.file.mimetype,
-      body: fs.createReadStream(req.file.path)
-    };
-    const response = await driveService.files.create({
-      resource: fileMetadata,
-      media: media,
-      fields: 'id, webViewLink, webContentLink'
-    });
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se subió ningún archivo' });
+    }
 
-    // Borra el archivo temporal
-    fs.unlinkSync(req.file.path);
+    const baseUrl = req.protocol + '://' + req.get('host');
+    const fileUrl = baseUrl + `/uploads/${req.file.filename}`;
 
     res.json({
-      fileId: response.data.id,
-      webViewLink: response.data.webViewLink,
-      webContentLink: response.data.webContentLink
+      fileId: req.file.filename,
+      webViewLink: fileUrl,
+      webContentLink: fileUrl,
+      message: 'Archivo subido exitosamente'
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
