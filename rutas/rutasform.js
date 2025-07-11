@@ -5,22 +5,41 @@ const PDFDocument = require('pdfkit');
 const Respuesta = require('../modelos/Respuestas.js');
 const Respuestasupervisor= require('../modelos/respuestasupervisor.js')
 const { Op } = require('sequelize');
-const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-// Configura multer para guardar archivos temporalmente
-const uploadDrive = require('multer')({ dest: 'temp/' });
-
-// Autenticación con Google
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, '../google-credentials.json'), // Ruta a JSON
-  scopes: ['https://www.googleapis.com/auth/drive']
+// Configuración de multer para guardar archivos localmente
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadPath = path.join(__dirname, '../uploads');
+    // Crear directorio si no existe
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
+  },
+  filename: function (req, file, cb) {
+    // Generar nombre único con timestamp
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const extension = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + extension);
+  }
 });
-const driveService = google.drive({ version: 'v3', auth });
 
-// ID de la carpeta compartida en  Google Drive 
-const FOLDER_ID = '1Ig3ue0KoqYfRlkzWYKtFvcZhtTNmW5N7'; 
+const upload = multer({ 
+  storage: storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024 // 10MB límite
+  },
+  fileFilter: function (req, file, cb) {
+    // Solo permitir imágenes
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Solo se permiten archivos de imagen'), false);
+    }
+  }
+}); 
 
 
 
@@ -37,7 +56,7 @@ router.post('/', async (req, res) => {
 
 
 
-router.post('/supervisioninst', uploadDrive.fields([
+router.post('/supervisioninst', upload.fields([
   { name: 'fotoetiquetaont' },
   { name: 'fotoont' },
   { name: 'fotoubicacionont' },
@@ -45,47 +64,32 @@ router.post('/supervisioninst', uploadDrive.fields([
   { name: 'fotoordenamientoreserva' },
   { name: 'fotoetiquetanap' },
   { name: 'fotopotencianap' },
- { name: 'firma' }
+  { name: 'firma' }
 ]), async (req, res) => {
   try {
-    // Función para subir un archivo a Drive y devolver el enlace
-    async function subirArchivoDrive(file) {
-      if (!file) return null;
-      const fileMetadata = {
-        name: file.originalname,
-        parents: [FOLDER_ID]
-      };
-      const media = {
-        mimeType: file.mimetype,
-        body: fs.createReadStream(file.path)
-      };
-      const response = await driveService.files.create({
-        resource: fileMetadata,
-        media: media,
-        fields: 'id, webViewLink'
-      });
-      fs.unlinkSync(file.path); // Borra archivo temporal
-      return response.data.webViewLink; // O usa response.data.id si prefieres
-    }
-
-    // Sube cada archivo a Drive y reemplaza la ruta por el enlace
+    // Construir objeto con rutas de archivos
     const fotos = {};
+    const baseUrl = req.protocol + '://' + req.get('host');
+    
     for (const campo of [
       'fotoetiquetaont', 'fotoont', 'fotoubicacionont', 'fotopotenciaont',
-      'fotoordenamientoreserva', 'fotoetiquetanap', 'fotopotencianap','firma'
+      'fotoordenamientoreserva', 'fotoetiquetanap', 'fotopotencianap', 'firma'
     ]) {
       if (req.files[campo]) {
-        fotos[campo] = await subirArchivoDrive(req.files[campo][0]);
+        // Generar URL accesible para la imagen
+        const relativePath = `/uploads/${req.files[campo][0].filename}`;
+        fotos[campo] = baseUrl + relativePath;
       }
     }
 
-    // Crea el registro en la base de datos con los enlaces de Drive
+    // Crea el registro en la base de datos con las rutas locales
     const data = {
       ...req.body,
       ...fotos
     };
+    
     const respuesta = await Respuestasupervisor.create(data);
-    res.status(201).json();
+    res.status(201).json({ success: true, message: 'Datos guardados exitosamente' });
   } catch (error) {
     console.error('Error al crear la respuesta de supervisión:', error);
     res.status(500).json({ error: error.message });
