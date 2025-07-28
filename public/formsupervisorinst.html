@@ -47,9 +47,10 @@
                 <option value="MARCOS GARCIA">MARCOS GARCIA</option>
                 <option value="MAXIMO VASQUEZ">MAXIMO VASQUEZ</option>
                 <option value="MELVIN ROJAS">MELVIN ROJAS</option>
-                <option value="OSCAR SOMOZA">OSCAR SOMOZA</option>
                 <option value="ROMAN XEC">ROMAN XEC</option>
                 <option value="WALTER MERIDA">WALTER MERIDA</option>
+                <option value="MARIO BERNABE">MARIO BERNABE</option>
+                <option value="RAFAEL CATALEN">RAFAEL CATALEN</option>
             </select><br>
 
             <label for="fecha">FECHA DE INSTALACION</label><br>
@@ -69,7 +70,7 @@
             <input type="text" class="form-control"  id="tipoaveria" name="tipoaveria" placeholder="Ingrese el tipo de averia" > <br> <br>
             
              <label for="fotoetiquetaont">FOTO ETIQUETA ONT</label><br>
-             <input class="form-select" type="file" id="fotoetiquetaont" name="fotoetiquetaont" accept="image/*">
+             <input class="form-select" type="file" id="fotoetiquetaont" name="fotoetiquetaont" accept="image/*" disabled>
             
             
             <label for="razonfalla">RAZON FALLA</label><br>
@@ -95,7 +96,7 @@
             </select><br>
 
             <label for="fotoont">FOTO DE ONT</label><br>
-             <input class="form-select" type="file" id="fotoont" name="fotoont" accept="image/*" >
+             <input class="form-select" type="file" id="fotoont" name="fotoont" accept="image/*" disabled >
 
             <label for="anclajeont">ANCLAJE ONT</label><br>
             <select class="form-select" aria-label="Default select example" id="anclajeont" name="anclajeont" >
@@ -105,7 +106,7 @@
             </select><br>
 
             
-            <label for="punteoubicacionont">PUNTEO UBICACION DE ONT</label><br>
+            <label for="punteoubicacionont">UBICACION DE ONT</label><br>
             <select class="form-select" aria-label="Default select example" id="punteoubicacionont" name="punteoubicacionont" >
                 <option value="" disabled selected>agregue una calificacion</option>
                 <option value="1">MALO</option>
@@ -114,7 +115,7 @@
 
             </select><br>
             <label for="fotoubicacionont">FOTO UBICACION DE ONT</label><br>
-             <input class="form-select" type="file" id="fotoubicacionont"  name="fotoubicacionont" accept="image/*" >
+             <input class="form-select" type="file" id="fotoubicacionont"  name="fotoubicacionont" accept="image/*" disabled>
 
 
             <label for="grapeadofibra">GRAPEADO DE F.O</label><br>
@@ -125,7 +126,7 @@
             </select><br>
 
             <label for="fotopotenciaont">FOTO POTENCIA DE ONT</label><br>
-             <input class="form-select" type="file" id="fotopotenciaont" name="fotopotenciaont" accept="image/*" >
+             <input class="form-select" type="file" id="fotopotenciaont" name="fotopotenciaont" accept="image/*" disabled>
 
             
             <label for="ordenamientoreserva">ORDENAMIENTO DE RESERVA</label><br>
@@ -136,7 +137,7 @@
             </select><br>
 
             <label for="fotoordenamientoreserva">FOTO DE ORDENAMIENTO DE RESERVA</label><br>
-             <input class="form-select" type="file" id="fotoordenamientoreserva"  name="fotoordenamientoreserva" accept="image/*">
+             <input class="form-select" type="file" id="fotoordenamientoreserva"  name="fotoordenamientoreserva" accept="image/*" disabled>
 
 
             <label for="instalacionarmella">INSTALACION DE ARMELLA</label><br>
@@ -155,13 +156,13 @@
 
             
             <label for="fotoetiquetanap">FOTO DE ETIQUTA DE NAP</label><br>
-             <input class="form-select" type="file" id="fotoetiquetanap"  name="fotoetiquetanap" accept="image/*" >
+             <input class="form-select" type="file" id="fotoetiquetanap"  name="fotoetiquetanap" accept="image/*" disabled >
 
              
             <label for="fotopotencianap">FOTO DE POTENCIA DE NAP</label><br>
-             <input class="form-select" type="file" id="fotopotencianap"  name="fotopotencianap" accept="image/*" >
+             <input class="form-select" type="file" id="fotopotencianap"  name="fotopotencianap" accept="image/*" disabled>
 
-             <label for="punteoacometidaextra">PUNTEO DE ACOMETIDA EXTERNA</label><br>
+             <label for="punteoacometidaextra">ACOMETIDA EXTERNA</label><br>
             <select class="form-select" aria-label="Default select example" id="punteoacometidaextra" name="punteoacometidaextra" >
                 <option value="" disabled selected>agregue una calificacion</option>
                 <option value="1">MALO</option>
@@ -173,8 +174,8 @@
             
 
               <label for="signature">FIRMA:</label><br>
-              <canvas id="signatureCanvas" width="500px" height="100"></canvas><br>
-              <button type="button" id="clearSignature">Limpiar Firma</button><br><br>
+              <canvas id="signatureCanvas" width="500px" disabled height="100"> </canvas><br>
+              <button type="button" id="clearSignature" disabled>Limpiar Firma</button><br><br>
 
             <button type="submit" class="btn btn-primary"> ENVIAR </button>
             
